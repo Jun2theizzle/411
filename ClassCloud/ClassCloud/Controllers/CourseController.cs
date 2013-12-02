@@ -18,7 +18,7 @@ namespace ClassCloud.Controllers
         public ActionResult Index()
         {
             return View(db.Courses.ToList());
-            //adfasf
+            //adfasfsdsf
         }
 
         // GET: /Course/Details/5
