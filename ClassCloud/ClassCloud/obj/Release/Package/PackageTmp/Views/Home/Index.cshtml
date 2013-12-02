@@ -1,0 +1,78 @@
+﻿@{
+    ViewBag.Title = "Home Page";
+}
+@model IEnumerable<ClassCloud.Models.Course>
+<div class="">
+    <div class=" jumbotron col-md-5 BrushedTexture">
+        <h1>ClassCloud</h1>
+        <p class="lead">ClassCloud is a virtual classroom allowing students to share notes and communicate during lecture in real-time.</p>
+        @if (User.Identity.IsAuthenticated)
+        { <button class="btn btn-lg btn-primary">Enter<span class=".glyphicon .glyphicon-check"></span></button> }
+        @if (!User.Identity.IsAuthenticated)
+        { @Html.Partial("_LoginPartial") }
+
+    </div>
+
+    <div class="row">
+        <div class="col-md-5 alert-info ">
+            <h2>Popular Courses</h2>
+            <table class="table table-hover table-condensed ">
+                <tr>
+                    <th> Course Name</th>
+                    <th> Course CRN</th>
+                    <th> Details</th>
+                    <th> Add</th>
+                </tr>
+
+                @foreach (var item in Model)
+                {
+                    <tr>
+                        <td>
+                            <span>
+                                @Html.DisplayFor(modelItem => item.Name)
+                            </span>
+                        </td>
+                        <td>
+                            <span>
+                                @Html.DisplayFor(modelItem => item.CRN)
+                            </span>
+                        </td>
+                        <td>
+                            <button class="btn btn-primary" data-bind="click: function(){searchVM.LoadCourseInfo(@item.ID)}">Go!</button>
+                        </td>
+                        <td>
+                            @if (User.Identity.IsAuthenticated)
+                            { <button class="btn btn-primary" data-bind="click: function(){searchVM.AddCourse(@item.ID)}">Add!<span class=".glyphicon .glyphicon-check"></span></button> }
+
+                            @if (!User.Identity.IsAuthenticated)
+                            { <button class="btn btn-primary" disabled="disabled" data-bind="click: function(){searchVM.AddCourse(@item.ID)}">Add Course!</button> }
+                        </td>
+
+
+
+
+                    </tr> }
+            </table>
+            @if (!User.Identity.IsAuthenticated)
+            {
+                <p class="alert alert-warning">Login to Add Classes!</p> }
+
+        </div>
+        @*<div class="col-md-4">
+                    <h2>Get more libraries</h2>
+                    <p>NuGet is a free Visual Studio extension that makes it easy to add, remove, and update libraries and tools in Visual Studio projects.</p>
+                    <p><a class="btn btn-default" href="http://go.microsoft.com/fwlink/?LinkId=301866">Learn more &raquo;</a></p>
+                </div>*
+            <div class="col-md-4">
+                <h2>Web Hosting</h2>
+                <p>You can easily find a web hosting company that offers the right mix of features and price for your applications.</p>
+                <p><a class="btn btn-default" href="http://go.microsoft.com/fwlink/?LinkId=301867">Learn more &raquo;</a></p>
+            </div>*@
+    </div>
+</div>
+
+<script>
+    $(document).ready(function () {
+        VM.index.initModule();
+    });
+</script>

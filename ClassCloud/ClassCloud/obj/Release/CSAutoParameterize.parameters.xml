@@ -1,0 +1,6 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<parameters>
+  <parameter name="ClassCloudContext-Web.config Connection String" description="ClassCloudContext Connection String used in web.config by the application to access the database." defaultValue="Data Source=SQL5006.myWindowsHosting.com;Initial Catalog=DB_9AC4C9_ClassCloud;User Id=DB_9AC4C9_ClassCloud_admin;Password=cs411demo;" tags="SqlConnectionString">
+    <parameterEntry kind="XmlFile" scope="c:\\users\\martin\\documents\\visual\ studio\ 2013\\Projects\\ClassCloud\\ClassCloud\\obj\\Release\\Package\\PackageTmp\\Web\.config$" match="/configuration/connectionStrings/add[@name='ClassCloudContext']/@connectionString" />
+  </parameter>
+</parameters>
