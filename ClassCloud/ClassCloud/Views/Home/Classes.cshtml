@@ -1,0 +1,21 @@
+﻿@model IEnumerable<ClassCloud.Models.Course>
+
+@{
+    ViewBag.Title = "Classes";
+}
+
+<h2>Classes</h2>
+
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Name)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.CRN)
+        </th>
+        <th></th>
+    </tr>
+
+
+</table>
