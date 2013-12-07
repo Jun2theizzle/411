@@ -5,6 +5,15 @@ VM.index = (function (ko, $) {
         var self = this;
         self.searchVM = new searchVM();
 
+        self.goClasses = function () {
+            window.location.href = '/Home/Classes';
+        };
+
+        self.addClass = function () {
+            alert('test');
+
+        };
+
 
 
 

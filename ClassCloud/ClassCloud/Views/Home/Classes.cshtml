@@ -4,8 +4,20 @@
     ViewBag.Title = "Classes";
 }
 
-<h2>Classes</h2>
+<script type="text/javascript">
+    $(document).ready(function () {
+        var msg = '@ViewBag.Message';
+        if(msg === 'Would you like to log in')
+            if (confirm(msg))
+            {
+                window.location.href = '../Account/Login';
+            }
 
+    });
+</script>
+
+<h2>Classes</h2>
+<button class="btn btn-lg btn-primary" data-bind="click: addClass">Add Classes</button>
 <table class="table">
     <tr>
         <th>
@@ -16,6 +28,24 @@
         </th>
         <th></th>
     </tr>
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                <span>
+                    @Html.DisplayFor(modelItem => item.Name)
+                </span>
+            </td>
+            <td>
+                <span>
+                    @Html.DisplayFor(modelItem => item.CRN)
+                </span>
+            </td>
+            <td>
+                <button class="btn btn-primary" data-bind="click: function(){searchVM.LoadCourseInfo(@item.ID)}">Go!</button>
+            </td>
+            
+        </tr> }
 
 
 </table>

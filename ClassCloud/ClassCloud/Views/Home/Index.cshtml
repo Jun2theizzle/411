@@ -2,12 +2,14 @@
     ViewBag.Title = "Home Page";
 }
 @model IEnumerable<ClassCloud.Models.Course>
+
+
 <div class="">
     <div class=" jumbotron col-md-5 BrushedTexture">
         <h1>ClassCloud</h1>
         <p class="lead">ClassCloud is a virtual classroom allowing students to share notes and communicate during lecture in real-time.</p>
         @if (User.Identity.IsAuthenticated)
-        { <button class="btn btn-lg btn-primary">Enter<span class=".glyphicon .glyphicon-check"></span></button> }
+        { <button class="btn btn-lg btn-primary" data-bind="click: goClasses">Enter<span class=".glyphicon .glyphicon-check"></span></button> }
         @if (!User.Identity.IsAuthenticated)
         { @Html.Partial("_LoginPartial") }
 
@@ -71,8 +73,3 @@
     </div>
 </div>
 
-<script>
-    $(document).ready(function () {
-        VM.index.initModule();
-    });
-</script>

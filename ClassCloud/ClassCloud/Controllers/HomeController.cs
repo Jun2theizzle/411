@@ -29,23 +29,20 @@ namespace ClassCloud.Controllers
         {
             
             string currentUser = User.Identity.GetUserName();
-            
+            if (currentUser == "")
+            {
+                ViewBag.Message = "Would you like to log in";
+                return View();
+            }
             System.Diagnostics.Debug.WriteLine(currentUser);
             System.Diagnostics.Debug.WriteLine("uh oh");
             var _CurrUserData = (from _UserData in db.UserDatas
                                  where _UserData.UserName == currentUser
                                  select _UserData);
-
-
-
             UserData CurrUserData = _CurrUserData.FirstOrDefault();
-            if (CurrUserData == null)
-            {
-                ViewBag.Message = "Would you like to log in";
-                return View();
-            }
-
-            return View(CurrUserData.Courses);
+            //return View();
+            System.Diagnostics.Debug.WriteLine(CurrUserData.Courses.ToList());
+            return View(CurrUserData.Courses.ToList());
         }
 
 
