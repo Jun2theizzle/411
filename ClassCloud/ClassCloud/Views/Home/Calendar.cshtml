@@ -1,0 +1,19 @@
+﻿
+@{
+    ViewBag.Title = "Calendar";
+}
+
+<h2>Calendar</h2>
+
+<script type="text/javascript">
+    $(document).ready(function () {
+        $('#calendar').fullCalendar({
+            dayClick: function () {
+                alert('A day has been clicked');
+            }
+        });
+    });
+
+</script>
+<div id="calendar"></div>
+

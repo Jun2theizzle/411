@@ -25,12 +25,14 @@ namespace ClassCloud
 
             bundles.Add(new StyleBundle("~/Content/css").Include(
                       "~/Content/bootstrap.css",
-                      "~/Content/site.css"));
+                      "~/Content/site.css",
+                      "~/Content/fullcalendar.css"));
 
             bundles.Add(new ScriptBundle("~/bundles/knockout").Include("~/Scripts/knockout-3.0.0.js"));
             bundles.Add(new ScriptBundle("~/bundles/scripts").Include(
                     "~/Scripts/Custom/root.js",
-                    "~/Scripts/Custom/searchVM.js"
+                    "~/Scripts/Custom/searchVM.js",
+                    "~/Scripts/fullcalendar.js"
                 ));
         }
     }

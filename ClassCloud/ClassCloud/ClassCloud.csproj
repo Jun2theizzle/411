@@ -205,10 +205,16 @@
     <Compile Include="Controllers\ClasssController.cs" />
     <Compile Include="Controllers\CourseController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\StudentController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Hubs\ChatHub.cs" />
+    <Compile Include="Migrations\201312072247190_AddedName.cs" />
+    <Compile Include="Migrations\201312072247190_AddedName.Designer.cs">
+      <DependentUpon>201312072247190_AddedName.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\Comment.cs" />
     <Compile Include="Models\Course.cs" />
@@ -222,6 +228,7 @@
   <ItemGroup>
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
+    <Content Include="Content\fullcalendar.css" />
     <Content Include="Content\Images\CloudBanner.jpg" />
     <Content Include="Content\Images\brushed.png" />
     <Content Include="favicon.ico" />
@@ -235,6 +242,7 @@
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\Custom\root.js" />
     <Content Include="Scripts\Custom\searchVM.js" />
+    <Content Include="Scripts\fullcalendar.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />
     <Content Include="Scripts\jquery-1.10.2.min.js" />
     <None Include="Scripts\jquery.validate-vsdoc.js" />
@@ -279,9 +287,12 @@
     <Content Include="Views\Course\Details.cshtml" />
     <Content Include="Views\Course\Edit.cshtml" />
     <Content Include="Views\Course\Index.cshtml" />
-    <Content Include="Views\Home\Classes.cshtml" />
-    <Content Include="Views\Classs\ClassStudent.cshtml" />
-    <Content Include="Views\Classs\LectureDetails.cshtml" />
+    <Content Include="Views\Student\Index.cshtml" />
+    <Content Include="Views\Class\ClassStudent.cshtml" />
+    <Content Include="Views\Class\LectureDetails.cshtml" />
+    <Content Include="Views\Class\CreateLecture.cshtml" />
+    <Content Include="Views\Student.cshtml" />
+    <Content Include="Views\Home\Calendar.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -292,6 +303,11 @@
     <Content Include="fonts\glyphicons-halflings-regular.eot" />
     <Content Include="packages.config" />
     <None Include="Project_Readme.html" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Migrations\201312072247190_AddedName.resx">
+      <DependentUpon>201312072247190_AddedName.cs</DependentUpon>
+    </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

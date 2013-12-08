@@ -6,13 +6,18 @@ VM.index = (function (ko, $) {
         self.searchVM = new searchVM();
 
         self.goClasses = function () {
-            window.location.href = '/Home/Classes';
+            window.location.href = '/Student/Index';
         };
 
         self.addClass = function () {
             alert('test');
 
         };
+
+        self.createLecture = function () {
+            alert('test');
+
+        }
 
 
 
