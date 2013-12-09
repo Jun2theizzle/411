@@ -51,7 +51,7 @@ input[type="checkbox"].input-validation-error {
     background-image:url('images/CloudBanner.jpg');
     background-size:inherit;
      background-repeat:no-repeat;
-     background-position:inherit;
+     background-position:center top;
      background-attachment:fixed;
 
      

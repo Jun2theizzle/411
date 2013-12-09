@@ -15,20 +15,23 @@ namespace ClassCloud.Models
     {
         public int UserDataID { get; set; }
         public string UserName { get; set; }
-        public virtual ICollection<Course> Courses { get; set; }
+        
         public int Points { get; set; }
         public UserType? UserType { get; set; }
 
-
+        public virtual ICollection<Course> Courses { get; set; }
+        
         public UserData()
         {
             Courses = new Collection<Course>();
+           
             Points = 0;
 
         }
         public UserData(string _UserName)
         {
             Courses = new Collection<Course>();
+          
             Points = 0;
             UserName = _UserName;
         }

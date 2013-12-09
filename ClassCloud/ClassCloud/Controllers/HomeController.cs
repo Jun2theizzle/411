@@ -77,13 +77,34 @@ namespace ClassCloud.Controllers
                 UserData NewData = new UserData(currentUser);
                 NewData.Courses.Add(course);
                 db.UserDatas.Add(NewData);
+                var newcourse = NewData.Courses.Select(x => new
+                {
+                    id = x.ID,
+                    name = x.Name,
+                    //items = x.Lectures.Select(item => new
+                    //{
+                    //    for nested collections
+                    //})
+                });
                 db.SaveChanges();
-                return Json(NewData.Courses, JsonRequestBehavior.AllowGet);
+                return Json(newcourse, JsonRequestBehavior.AllowGet);
             }
             else
                 CurrUserData.Courses.Add(course);
+
+            var courses = CurrUserData.Courses.Select(x => new
+            {
+                id = x.ID,
+                name = x.Name,
+                //items = x.Lectures.Select(item => new
+                //{
+                //    for nested collections
+                //})
+            });
+
+
             db.SaveChanges();
-            return Json(CurrUserData.Courses, JsonRequestBehavior.AllowGet);
+            return Json(courses, JsonRequestBehavior.AllowGet);
         }
 
     }

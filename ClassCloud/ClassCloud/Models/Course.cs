@@ -12,20 +12,18 @@ namespace ClassCloud.Models
         public int CRN { get; set; }
         public string Name { get; set; }
         public virtual ICollection<Lecture> Lectures { get; set; }
-        public virtual ICollection<int> StudentIDs { get; set; }
-
+        public virtual ICollection<UserData> UserDatas { get; set; }
         public Course()
         {
             Lectures = new Collection<Lecture>();
-            StudentIDs = new Collection<int>();
+            UserDatas = new Collection<UserData>();
         }
         public Course(int _CRN, string CourseName)
         {
             CRN = _CRN;
             Name = CourseName;
             Lectures = new Collection<Lecture>();
-            StudentIDs = new Collection<int>();
-
+           
         }
     }
 }
