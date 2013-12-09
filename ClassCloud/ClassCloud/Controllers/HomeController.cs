@@ -25,10 +25,7 @@ namespace ClassCloud.Controllers
             
         }
 
-        public ActionResult Calendar()
-        {
-            return View();
-        }
+      
 
 
         [ActionName("loadcourseinfo")]
@@ -85,6 +82,7 @@ namespace ClassCloud.Controllers
             db.SaveChanges();
             return Json(CurrUserData.Courses, JsonRequestBehavior.AllowGet);
         }
+       
 
     }
 }

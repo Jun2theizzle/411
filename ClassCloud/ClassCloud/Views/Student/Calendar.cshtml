@@ -1,4 +1,4 @@
-﻿
+﻿@model IEnumerable<ClassCloud.Models.Course>
 @{
     ViewBag.Title = "Calendar";
 }
@@ -8,12 +8,10 @@
 <script type="text/javascript">
     $(document).ready(function () {
         $('#calendar').fullCalendar({
-            dayClick: function () {
-                alert('A day has been clicked');
-            }
+            events: home.listOfEvents()
         });
-    });
 
+    });
 </script>
 <div id="calendar"></div>
 

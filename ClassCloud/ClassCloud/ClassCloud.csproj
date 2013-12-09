@@ -292,7 +292,7 @@
     <Content Include="Views\Class\LectureDetails.cshtml" />
     <Content Include="Views\Class\CreateLecture.cshtml" />
     <Content Include="Views\Student.cshtml" />
-    <Content Include="Views\Home\Calendar.cshtml" />
+    <Content Include="Views\Student\Calendar.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
