@@ -31,9 +31,29 @@ namespace ClassCloud.Controllers
                                  where _UserData.UserName == currentUser
                                  select _UserData);
             UserData CurrUserData = _CurrUserData.FirstOrDefault();
-            //return View();
-            System.Diagnostics.Debug.WriteLine(CurrUserData.Courses.ToList());
             return View(CurrUserData.Courses.ToList());
+        }
+
+        public ActionResult Calendar()
+        {
+            
+            return View(); 
+        }
+
+
+        [ActionName("getAllCourses")]
+        [HttpGet]
+        public ActionResult GetAllCourses()
+        {
+            string currentUser = User.Identity.GetUserName();
+            var _CurrUserData = (from _UserData in db.UserDatas
+                                 where _UserData.UserName == currentUser
+                                 select _UserData);
+            UserData CurrUserData = _CurrUserData.FirstOrDefault();
+
+            return Json(CurrUserData.Courses, JsonRequestBehavior.AllowGet);
+
+
         }
 
         //

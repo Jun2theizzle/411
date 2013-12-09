@@ -32,7 +32,8 @@ namespace ClassCloud
             bundles.Add(new ScriptBundle("~/bundles/scripts").Include(
                     "~/Scripts/Custom/root.js",
                     "~/Scripts/Custom/searchVM.js",
-                    "~/Scripts/fullcalendar.js"
+                    "~/Scripts/fullcalendar.js",
+                    "~/Scripts/jquery-ui-1.10.3.js"
                 ));
         }
     }
