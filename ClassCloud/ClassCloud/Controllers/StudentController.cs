@@ -31,6 +31,8 @@ namespace ClassCloud.Controllers
                                  where _UserData.UserName == currentUser
                                  select _UserData);
             UserData CurrUserData = _CurrUserData.FirstOrDefault();
+            if (CurrUserData == null)
+                return View();
             return View(CurrUserData.Courses.ToList());
         }
 

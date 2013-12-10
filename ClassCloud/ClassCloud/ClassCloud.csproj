@@ -206,14 +206,15 @@
     <Compile Include="Controllers\ClasssController.cs" />
     <Compile Include="Controllers\CourseController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\LectureController.cs" />
     <Compile Include="Controllers\StudentController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Hubs\ChatHub.cs" />
-    <Compile Include="Migrations\201312090503560_morechngs.cs" />
-    <Compile Include="Migrations\201312090503560_morechngs.Designer.cs">
-      <DependentUpon>201312090503560_morechngs.cs</DependentUpon>
+    <Compile Include="Migrations\201312102056585_DatabaseFix.cs" />
+    <Compile Include="Migrations\201312102056585_DatabaseFix.Designer.cs">
+      <DependentUpon>201312102056585_DatabaseFix.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
@@ -297,6 +298,11 @@
     <Content Include="Views\Class\CreateLecture.cshtml" />
     <Content Include="Views\Student.cshtml" />
     <Content Include="Views\Student\Calendar.cshtml" />
+    <Content Include="Views\Lecture\Create.cshtml" />
+    <Content Include="Views\Lecture\Delete.cshtml" />
+    <Content Include="Views\Lecture\Details.cshtml" />
+    <Content Include="Views\Lecture\Edit.cshtml" />
+    <Content Include="Views\Lecture\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -309,8 +315,8 @@
     <None Include="Project_Readme.html" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\201312090503560_morechngs.resx">
-      <DependentUpon>201312090503560_morechngs.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201312102056585_DatabaseFix.resx">
+      <DependentUpon>201312102056585_DatabaseFix.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

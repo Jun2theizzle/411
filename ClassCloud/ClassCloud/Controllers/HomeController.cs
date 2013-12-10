@@ -22,10 +22,10 @@ namespace ClassCloud.Controllers
         public ActionResult Chat()
         {
             return View();
-            
+
         }
 
-      
+
 
 
         [ActionName("loadcourseinfo")]
@@ -39,13 +39,13 @@ namespace ClassCloud.Controllers
             var Lectures = (from _Lecture in db.Lectures
                             where _Lecture.CourseID == ID
                             select _Lecture).ToArray<Lecture>();
-            CourseInfo.Lectures = Lectures;
 
-            //var StudentIDs = (from _Course in db.Courses
-            //                  where _Course.ID == ID
-            //                  select _Course.StudentIDs).FirstOrDefault();
-            //CourseInfo.StudentIDs = StudentIDs;
-            return Json(CourseInfo, JsonRequestBehavior.AllowGet);
+            JSONCourse JSONCourse = new JSONCourse(CourseInfo.ID, CourseInfo.CRN, CourseInfo.Name);
+            foreach(var Lecture in Lectures)
+            {
+            JSONCourse.Lectures.Add(new JSONLecture(Lecture.ID,Lecture.Name,Lecture.CourseID,Lecture.Date));
+            }
+            return Json(JSONCourse, JsonRequestBehavior.AllowGet);
         }
         [ActionName("addcourse")]
         [HttpGet]
@@ -76,8 +76,8 @@ namespace ClassCloud.Controllers
                 db.UserDatas.Add(NewData);
                 var newcourse = NewData.Courses.Select(x => new
                 {
-                    id = x.ID,
-                    name = x.Name,
+                    ID = x.ID,
+                    Name = x.Name,
                     //items = x.Lectures.Select(item => new
                     //{
                     //    for nested collections
@@ -91,8 +91,8 @@ namespace ClassCloud.Controllers
 
             var courses = CurrUserData.Courses.Select(x => new
             {
-                id = x.ID,
-                name = x.Name,
+                ID = x.ID,
+                Name = x.Name,
                 //items = x.Lectures.Select(item => new
                 //{
                 //    for nested collections
@@ -103,7 +103,9 @@ namespace ClassCloud.Controllers
             db.SaveChanges();
             return Json(courses, JsonRequestBehavior.AllowGet);
         }
-       
+
 
     }
+
+
 }
