@@ -64,6 +64,10 @@ namespace ClassCloud.Controllers
 
         public ActionResult SearchClasses(string searchString, int? CRN)
         {
+            if (searchString == null && CRN == null)
+            {
+                return View(db.Courses.ToList());
+            }
             var classes = from m in db.Courses
                             select m;
             if (!String.IsNullOrEmpty(searchString))
