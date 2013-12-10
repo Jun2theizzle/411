@@ -49,15 +49,15 @@ namespace ClassCloud.Models
         public string Name { get; set; }
         public virtual ICollection<Comment> Discussion { get; set; }
         public virtual ICollection<Note> Notes { get; set; }
-        public DateTime Date { get; set; }
+        public string Date { get; set; }
         public int CourseID { get; set; }
 
         public JSONLecture(int _ID,string _Name, int _CourseID, DateTime? _Date = null)
         {
             if (!_Date.HasValue)
-                Date = DateTime.Now;
+                Date = DateTime.Now.ToString("MMMM dd, yyyy");
             else if (_Date.HasValue)
-                Date = _Date.Value;
+                Date = _Date.Value.ToString("MMMM dd, yyyy");
             ID = _ID;
             Name = _Name;
             CourseID = _CourseID;
