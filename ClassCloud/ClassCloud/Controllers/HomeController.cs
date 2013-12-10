@@ -32,7 +32,7 @@ namespace ClassCloud.Controllers
         [HttpGet]
         public ActionResult LoadCourseInfo(int ID)
         {
-
+            System.Diagnostics.Debug.WriteLine(ID);
             var CourseInfo = (from _Course in db.Courses
                               where _Course.ID == ID
                               select _Course).FirstOrDefault();

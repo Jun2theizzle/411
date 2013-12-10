@@ -52,8 +52,13 @@ namespace ClassCloud.Controllers
                                  where _UserData.UserName == currentUser
                                  select _UserData);
             UserData CurrUserData = _CurrUserData.FirstOrDefault();
+            List<Course> retList = new List<Course>();
+            foreach(Course curr in CurrUserData.Courses.ToList())
+            {
+                retList.Add(new Course {ID= curr.ID, CRN = curr.CRN, Name = curr.Name});
+            }
 
-            return Json(CurrUserData.Courses, JsonRequestBehavior.AllowGet);
+            return Json(retList, JsonRequestBehavior.AllowGet);
 
         }
 

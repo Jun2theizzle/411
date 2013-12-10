@@ -10,7 +10,9 @@
             url: '/home/loadcourseinfo/' + ID,
             data: {},
             success: function (response) {
+                console.log('adfa');
                 console.log(response);
+                return response
             }
         });
     }
@@ -24,6 +26,7 @@
             data: {},
             success: function (response) {
                 console.log(response);
+                alert('Class added!');
             }
         });
     }
@@ -36,11 +39,12 @@
             url: '/student/getAllCourses/',
             success: function (response) {
                 console.log(response);
-                alert(ko.toJSON(response, null, 2));
+                home.fillEvents(response);
                 window.location.href = '/Student/Calendar/';
 
             },
             error: function (xhr, textStatus, errorThrown) {
+                alert('error');
                 alert(ko.toJSON(xhr, null, 2));
 
             }
