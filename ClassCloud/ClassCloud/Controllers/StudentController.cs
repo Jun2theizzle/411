@@ -53,7 +53,15 @@ namespace ClassCloud.Controllers
                                  select _UserData);
             UserData CurrUserData = _CurrUserData.FirstOrDefault();
 
-            return Json(CurrUserData.Courses, JsonRequestBehavior.AllowGet);
+            List<JSONCourse> AllCourse = new List<JSONCourse>();
+            foreach (var _course in CurrUserData.Courses) {
+                JSONCourse JSONCourse = new JSONCourse(_course.ID, _course.CRN, _course.Name);
+                foreach (var Lecture in _course.Lectures)
+                {
+                    JSONCourse.Lectures.Add(new JSONLecture(Lecture.ID, Lecture.Name, Lecture.CourseID, Lecture.Date));
+                }
+            }
+            return Json(AllCourse, JsonRequestBehavior.AllowGet);
 
         }
 
