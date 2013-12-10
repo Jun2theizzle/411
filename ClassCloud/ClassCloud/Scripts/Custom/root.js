@@ -20,12 +20,14 @@ VM.index = (function (ko, $) {
         }
 
         self.showCalendar = function () {
-            //self.searchVM.GetStudentCourses();
-            window.location.href = "/Student/Calendar";
+            self.searchVM.GetStudentCourses();
         }
         
-        self.fillEvents = function () {
-            alert('hey');
+        self.fillEvents = function (listOfCourses) {
+            ko.utils.arrayForEach(listOfCourses, function (item) {
+                alert(ko.toJSON(self.searchVM.LoadCourseInfo(item.ID), null, 2));
+
+            });
             
 
         }
