@@ -62,9 +62,19 @@ namespace ClassCloud.Controllers
 
         }
 
-        public ActionResult SearchClasses()
+        public ActionResult SearchClasses(string searchString, int? CRN)
         {
-            return View(db.Courses.ToList());
+            var classes = from m in db.Courses
+                            select m;
+            if (!String.IsNullOrEmpty(searchString))
+            {
+                classes = classes.Where(s => s.Name.Contains(searchString));
+            }
+            else
+            {
+                classes = classes.Where(s => s.CRN == CRN);
+            }
+            return View(classes);
         }
 
         //
