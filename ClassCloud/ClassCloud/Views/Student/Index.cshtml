@@ -19,9 +19,18 @@
 
 <div class="col-lg-6">
     <button data-bind="click: addClass" class="btn btn-lg btn-primary">Add Classes</button>
-    <button class="btn btn-lg btn-primary" data-bind="click: showCalendar">Show Calendar</button>
+   
+    @if (Model == null || Model.Count() == 0)
+    {
+         <button class="btn btn-lg btn-primary disabled" data-bind="click: showCalendar">Show Calendar</button>
+        <div>
+            <p class="alert alert-danger">You currently have no courses, please add some!</p>
+
+        </div>
+    }
     @if (Model != null)
     {
+         <button class="btn btn-lg btn-primary" data-bind="click: showCalendar">Show Calendar</button>
         <table class="table table-hover table-condensed">
             <tr>
                 <th>
@@ -54,13 +63,7 @@
 
 
         </table>}
-    @if (Model == null || Model.Count() == 0)
-    {
-        <div>
-            <p class="alert alert-danger">You currently have no courses, please add some!</p>
-
-        </div>
-    }
+   
 </div>
 <div class="col-md-5 alert-info "><p>This is how we YOLO!!!!</p></div>
 <span class="clearfix "></span>

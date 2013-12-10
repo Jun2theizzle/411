@@ -1,5 +1,7 @@
 ﻿var searchVM = function () {
     var self = this;
+
+
     self.LoadCourseInfo = function (ID) {
         $.ajax({
             type: 'get',
