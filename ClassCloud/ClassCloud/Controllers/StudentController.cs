@@ -55,7 +55,21 @@ namespace ClassCloud.Controllers
 
             return Json(CurrUserData.Courses, JsonRequestBehavior.AllowGet);
 
+        }
 
+        public ActionResult SearchClasses(string searchString, int? CRN)
+        {
+            var classes = from m in db.Courses
+                            select m;
+            if (!String.IsNullOrEmpty(searchString))
+            {
+                classes = classes.Where(s => s.Name.Contains(searchString));
+            }
+            else
+            {
+                classes = classes.Where(s => s.CRN == CRN);
+            }
+            return View(classes);
         }
 
         //
