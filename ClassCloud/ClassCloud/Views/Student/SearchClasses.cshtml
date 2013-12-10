@@ -6,6 +6,15 @@
 
 <h2>SearchClasses</h2>
 
+     @using (Html.BeginForm()){    
+         <p> Course: @Html.TextBox("SearchString") <br />   
+         <input type="submit" value="Filter" /></p> 
+        } 
+     @using (Html.BeginForm()){    
+         <p> CRN: @Html.TextBox("CRN") <br />   
+         <input type="submit" value="Filter" /></p> 
+        } 
+
 <table class="table">
     <tr>
         <th>
