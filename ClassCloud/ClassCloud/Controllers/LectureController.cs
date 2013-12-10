@@ -17,7 +17,8 @@ namespace ClassCloud.Controllers
         // GET: /Lecture/
         public ActionResult Index()
         {
-            return View(db.Lectures.ToList());
+            var lectures = db.Lectures.Include(l => l.Course);
+            return View(lectures.ToList());
         }
 
         // GET: /Lecture/Details/5
@@ -38,6 +39,7 @@ namespace ClassCloud.Controllers
         // GET: /Lecture/Create
         public ActionResult Create()
         {
+            ViewBag.CourseID = new SelectList(db.Courses, "ID", "Name");
             return View();
         }
 
@@ -55,6 +57,7 @@ namespace ClassCloud.Controllers
                 return RedirectToAction("Index");
             }
 
+            ViewBag.CourseID = new SelectList(db.Courses, "ID", "Name", lecture.CourseID);
             return View(lecture);
         }
 
@@ -70,6 +73,7 @@ namespace ClassCloud.Controllers
             {
                 return HttpNotFound();
             }
+            ViewBag.CourseID = new SelectList(db.Courses, "ID", "Name", lecture.CourseID);
             return View(lecture);
         }
 
@@ -86,6 +90,7 @@ namespace ClassCloud.Controllers
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
+            ViewBag.CourseID = new SelectList(db.Courses, "ID", "Name", lecture.CourseID);
             return View(lecture);
         }
 
