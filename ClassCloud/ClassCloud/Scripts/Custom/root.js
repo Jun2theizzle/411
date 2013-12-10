@@ -10,7 +10,7 @@ VM.index = (function (ko, $) {
         };
 
         self.addClass = function () {
-            alert('test');
+            window.location.href = '/Student/SearchClasses';
 
         };
 
@@ -20,8 +20,8 @@ VM.index = (function (ko, $) {
         }
 
         self.showCalendar = function () {
-            self.searchVM.GetStudentCourses();
-
+            //self.searchVM.GetStudentCourses();
+            window.location.href = "/Student/Calendar";
         }
         
         self.fillEvents = function () {

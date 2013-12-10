@@ -1,0 +1,34 @@
+﻿@model IEnumerable<ClassCloud.Models.Course>
+
+@{
+    ViewBag.Title = "SearchClasses";
+}
+
+<h2>SearchClasses</h2>
+
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.CRN)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Name)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.CRN)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Name)
+        </td>
+        <td>
+            <button data-bind="click: function() { searchVM.AddCourse(@item.ID)}" class="btn btn-lg btn-primary">Add Class</button>
+        </td>
+    </tr>
+}
+
+</table>

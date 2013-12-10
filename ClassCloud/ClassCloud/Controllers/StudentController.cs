@@ -55,7 +55,11 @@ namespace ClassCloud.Controllers
 
             return Json(CurrUserData.Courses, JsonRequestBehavior.AllowGet);
 
+        }
 
+        public ActionResult SearchClasses()
+        {
+            return View(db.Courses.ToList());
         }
 
         //

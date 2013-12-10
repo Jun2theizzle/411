@@ -36,7 +36,7 @@
             url: '/student/getAllCourses/',
             success: function (response) {
                 console.log(response);
-
+                alert(ko.toJSON(response, null, 2));
                 window.location.href = '/Student/Calendar/';
 
             },
