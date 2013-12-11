@@ -15,7 +15,7 @@ VM.index = (function (ko, $) {
         };
         
         self.studentHome = function () {
-            window.location.href = '/Student/Index';3
+            window.location.href = '/Student/Index';
         }
 
         self.createLecture = function () {
