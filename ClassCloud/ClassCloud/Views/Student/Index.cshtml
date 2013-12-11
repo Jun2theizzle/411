@@ -1,5 +1,5 @@
 ﻿@model IEnumerable<ClassCloud.Models.Course>
-
+@using Microsoft.AspNet.Identity
 @{
     ViewBag.Title = "Classes";
 }
@@ -16,80 +16,118 @@
 </script>
 <h2>Classes</h2>
 <h3>Currently logged in as @User.Identity.Name</h3>
+<div data-bind="visible: !searchVM.inLecture()">
+    <div class="col-lg-6">
+        <button data-bind="click: addClass" class="btn btn-lg btn-primary">Add Classes</button>
 
-<div class="col-lg-6">
-    <button data-bind="click: addClass" class="btn btn-lg btn-primary">Add Classes</button>
-           
-  @if (Model == null || Model.Count() == 0) 
-  {
-        <button class="btn btn-lg btn-primary disabled" data-bind="click: showCalendar">Show Calendar</button>
-        <div>
-            <p class="alert alert-danger">You currently have no courses, please add some!</p>
-
-        </div>
-}
-@if (Model != null)
-{
-    <button class="btn btn-lg btn-primary" data-bind="click: showCalendar">Show Calendar</button>
-    <table class="table table-hover table-condensed">
-        <tr>
-            <th>
-                @Html.DisplayNameFor(model => model.Name)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.CRN)
-            </th>
-            <th>Action</th>
-        </tr>
-        @foreach (var item in Model)
+        @if (Model == null || Model.Count() == 0)
         {
-    <tr data-bind="css: { 'alert-info': @item.ID == searchVM.activeClass() }">
-                <td>
-                    <span>
-                        @Html.DisplayFor(modelItem => item.Name)
-                    </span>
-                </td>
-                <td>
-                    <span>
-                        @Html.DisplayFor(modelItem => item.CRN)
-                    </span>
+            <button class="btn btn-lg btn-primary disabled" data-bind="click: showCalendar">Show Calendar</button>
+            <div>
+                <p class="alert alert-danger">You currently have no courses, please add some!</p>
 
-                </td>
-        <td><button class="btn btn-primary" data-bind="click: function(){searchVM.DisplayLecture(@item.ID)}">View</button></td>
+            </div>
+        }
+        @if (Model != null)
+        {
+            <button class="btn btn-lg btn-primary" data-bind="click: showCalendar">Show Calendar</button>
+            <table class="table table-hover table-condensed">
+                <tr>
+                    <th>
+                        @Html.DisplayNameFor(model => model.Name)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.CRN)
+                    </th>
+                    <th>Action</th>
+                </tr>
+                @foreach (var item in Model)
+                {
+                    <tr data-bind="css: { 'alert-info': @item.ID == searchVM.activeClass() }">
+                        <td>
+                            <span>
+                                @Html.DisplayFor(modelItem => item.Name)
+                            </span>
+                        </td>
+                        <td>
+                            <span>
+                                @Html.DisplayFor(modelItem => item.CRN)
+                            </span>
+
+                        </td>
+                        <td><button class="btn btn-primary" data-bind="click: function(){searchVM.DisplayLecture(@item.ID)}">View</button></td>
 
 
 
-            </tr> }
+                    </tr> }
 
 
-    </table>}
+            </table>}
 
+    </div>
+    <div class="col-md-6">
+        <!-- ko if: (searchVM.LectureList().length) -->
+
+        <table class="table table-hover table-bordered alert-info">
+            <thead>
+                <tr>
+
+                    @* <th>Lecture ID</th>*@
+                    <th>Lecture Name</th>
+                    <th>Lecture Date</th>
+                    <th>Action</th>
+                </tr>
+            </thead>
+            <tbody data-bind="foreach: searchVM.LectureList">
+                <tr>
+                    @*<td data-bind="text: $data.id"></td>*@
+                    <td data-bind="text: $data.name"></td>
+                    <td data-bind="text: $data.date"></td>
+                    <td>
+                        <button class="btn btn-success btn-mini" data-bind="click: function(){$root.searchVM.EnterLecture($data.id)}">Go To Lecture!</button>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        <!-- /ko -->
+    </div>
 </div>
-<div class="col-md-6">
-    <!-- ko if: (searchVM.LectureList().length) -->
-    
-    <table class="table table-hover table-bordered alert-info">
-        <thead>
-            <tr>
-                
-                <th>Lecture ID</th>
-                <th>Lecture Name</th>
-                <th>Lecture Date</th>
-                <th>Action</th>
-            </tr>
-        </thead>
-        <tbody data-bind="foreach: searchVM.LectureList">
-            <tr>
-                <td data-bind="text: $data.id"></td>
-                <td data-bind="text: $data.name"></td>
-                <td data-bind="text: $data.date"></td>
-                <td>
-                    <button class="btn btn-success btn-mini">Go To Lecture!</button>
-                </td>
-            </tr>
-        </tbody>
-    </table>
-    <!-- /ko -->
+<div data-bind="visible: searchVM.inLecture()">
+
+    <h2>Chat   <button class="btn btn-primary" data-bind="click: searchVM.LeaveLecture">Back</button></h2>
+
+    <div class="container  col-lg-6">
+
+        <textarea class="form-control" rows="3" id="message" placeholder="Ask a question..."></textarea>
+        <input type="button" id="sendmessage" value="Send" />
+        <input type="hidden" id="displayname" value="@User.Identity.GetUserName()" />
+        <input type="hidden" id="lecture" data-bind="value: searchVM.activeLecture" />
+        <!-- ko if: (searchVM.CommentList()!== undefined) -->
+        <ul id="discussion" class="media-list" data-bind="foreach: searchVM.CommentList">
+
+            <li class="media-object">
+                <div class="media-body"><strong data-bind="text: $data.username"></strong><span>: </span><span data-bind="text: $data.message"></span></div>
+            </li>
+        </ul>
+        <!-- /ko -->
+
+    </div>
+
+    <div>
+
+        <p>Ive got something to say</p>
+
+
+    </div>
+    @section scripts {
+        <!--Script references. -->
+        <!--The jQuery library is required and is referenced by default in _Layout.cshtml. -->
+        <!--Reference the SignalR library. -->
+        <script src="~/Scripts/jquery.signalR-2.0.0.min.js"></script>
+        <!--Reference the autogenerated SignalR hub script. -->
+        <script src="~/signalr/hubs"></script>
+        <!--SignalR script to update the chat page and send messages.-->
+    }
 
 
 </div>

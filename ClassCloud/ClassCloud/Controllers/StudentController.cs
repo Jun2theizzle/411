@@ -35,7 +35,18 @@ namespace ClassCloud.Controllers
                 return View();
             return View(CurrUserData.Courses.ToList());
         }
+        [ActionName("loadchat")]
+        [HttpGet]
+        public ActionResult LoadChat(int ID)
+        {
+            var Lecture = (from _Lecture in db.Lectures
+                            where _Lecture.ID == ID
+                            select _Lecture).FirstOrDefault();
 
+           
+            return Json(Lecture.Discussion.ToArray(), JsonRequestBehavior.AllowGet);
+
+        }
         public ActionResult Calendar()
         {
             
