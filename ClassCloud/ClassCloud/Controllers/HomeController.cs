@@ -15,7 +15,6 @@ namespace ClassCloud.Controllers
         private ApplicationDbContext db = new ApplicationDbContext();
         public ActionResult Index()
         {
-            // 
             return View();
         }
 
