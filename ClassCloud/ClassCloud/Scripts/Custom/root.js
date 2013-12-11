@@ -31,8 +31,9 @@ VM.index = (function (ko, $) {
             var test = []
             ko.utils.arrayForEach(listOfCourses, function (item) {
                 console.log(ko.toJSON(item, null, 2));
+                color = self.colorChooser(item.ID);
                 ko.utils.arrayForEach(item.Lectures, function (lect) {
-                    self.listOfEvents().push({ title: lect.Name, start: self.convertDate(lect.Date) });
+                    self.listOfEvents().push({ title: lect.Name, start: self.convertDate(lect.Date), color: color });
 
                 })
             });
@@ -76,6 +77,33 @@ VM.index = (function (ko, $) {
                     return year + '-' + '12' + '-' + day;
             }
 
+        };
+
+        self.colorChooser = function (n) {
+            switch (n) {
+                case 1:
+                    return 'red';
+                case 2:
+                    return 'blue';
+                case 3:
+                    return 'green';
+                case 4:
+                    return 'LightSlateGray';
+                case 5:
+                    return 'indigos';
+                case 6:
+                    return 'purple';
+                case 7:
+                    return 'orange';
+                case 8:
+                    return 'crimson';
+                case 9:
+                    return 'Coral';
+                case 10:
+                    return 'pink';
+                default:
+                    return 'lightblue';
+            }
         };
            
 
