@@ -42,7 +42,6 @@ namespace ClassCloud.Controllers
             return View(); 
         }
 
-       
 
         [ActionName("getAllCourses")]
         [HttpGet]
@@ -56,19 +55,29 @@ namespace ClassCloud.Controllers
 
             List<JSONCourse> AllCourse = new List<JSONCourse>();
             foreach (var _course in CurrUserData.Courses) {
+                System.Diagnostics.Debug.WriteLine(CurrUserData.Courses.Count);
                 JSONCourse JSONCourse = new JSONCourse(_course.ID, _course.CRN, _course.Name);
+                System.Diagnostics.Debug.WriteLine(_course.Lectures.Count);
+
                 foreach (var Lecture in _course.Lectures)
                 {
+
                     JSONCourse.Lectures.Add(new JSONLecture(Lecture.ID, Lecture.Name, Lecture.CourseID, Lecture.Date));
                 }
                 AllCourse.Add(JSONCourse);
             }
+
+            System.Diagnostics.Debug.WriteLine(AllCourse.Count);
             return Json(AllCourse, JsonRequestBehavior.AllowGet);
 
         }
 
         public ActionResult SearchClasses(string searchString, int? CRN)
         {
+            if(searchString == null && CRN == null)
+            {
+                return View(db.Courses.ToList());
+            }
             var classes = from m in db.Courses
                             select m;
             if (!String.IsNullOrEmpty(searchString))

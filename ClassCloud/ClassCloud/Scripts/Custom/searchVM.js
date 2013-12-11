@@ -16,7 +16,6 @@
             url: '/home/loadcourseinfo/' + ID,
             data: {},
             success: function (response) {
-                console.log('adfa');
                 console.log(response);
                 return response
             }
@@ -46,7 +45,6 @@
             success: function (response) {
                // alert(response);
                 home.fillEvents(response);
-                window.location.href = '/Student/Calendar/';
 
             },
             error: function (xhr, textStatus, errorThrown) {
