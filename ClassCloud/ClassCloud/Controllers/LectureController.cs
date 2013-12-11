@@ -21,7 +21,10 @@ namespace ClassCloud.Controllers
             return View(lectures.ToList());
         }
 
+        
         // GET: /Lecture/Details/5
+        [ActionName("details")]
+        [HttpGet]
         public ActionResult Details(int? id)
         {
             if (id == null)

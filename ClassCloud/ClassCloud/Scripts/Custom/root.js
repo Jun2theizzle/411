@@ -33,7 +33,7 @@ VM.index = (function (ko, $) {
                 console.log(ko.toJSON(item, null, 2));
                 color = self.colorChooser(item.ID);
                 ko.utils.arrayForEach(item.Lectures, function (lect) {
-                    self.listOfEvents().push({ title: lect.Name, start: self.convertDate(lect.Date), color: color });
+                    self.listOfEvents().push({ id: lect.ID, title: lect.Name, start: self.convertDate(lect.Date), color: color });
 
                 })
             });

@@ -36,6 +36,7 @@
         });
     }
 
+
     self.GetStudentCourses = function () {
         $.ajax({
             type: 'get',

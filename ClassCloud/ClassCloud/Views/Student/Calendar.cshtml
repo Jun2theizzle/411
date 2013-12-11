@@ -10,7 +10,10 @@
         home.showCalendar();
         $('#calendar').fullCalendar({
             events: home.listOfEvents(),
-            editable: true
+            editable: true,
+            eventClick: function (calEvent, jsEvent, view) {
+                window.location.href = '/Lecture/Details/' + calEvent.id;
+            }
         });
     });
 </script>
