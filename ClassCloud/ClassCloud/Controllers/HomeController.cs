@@ -16,7 +16,7 @@ namespace ClassCloud.Controllers
         public ActionResult Index()
         {
             // 
-            return View(db.Courses.ToList());
+            return View();
         }
 
         public ActionResult Chat()
@@ -24,10 +24,6 @@ namespace ClassCloud.Controllers
             return View();
 
         }
-
-
-
-
         [ActionName("loadcourseinfo")]
         [HttpGet]
         public ActionResult LoadCourseInfo(int ID)

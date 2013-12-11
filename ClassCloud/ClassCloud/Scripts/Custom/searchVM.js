@@ -44,7 +44,7 @@
             cache: false,
             url: '/student/getAllCourses/',
             success: function (response) {
-                console.log(response);
+               // alert(response);
                 home.fillEvents(response);
                 window.location.href = '/Student/Calendar/';
 

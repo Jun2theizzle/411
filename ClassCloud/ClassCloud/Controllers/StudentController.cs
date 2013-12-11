@@ -42,6 +42,7 @@ namespace ClassCloud.Controllers
             return View(); 
         }
 
+       
 
         [ActionName("getAllCourses")]
         [HttpGet]
@@ -60,6 +61,7 @@ namespace ClassCloud.Controllers
                 {
                     JSONCourse.Lectures.Add(new JSONLecture(Lecture.ID, Lecture.Name, Lecture.CourseID, Lecture.Date));
                 }
+                AllCourse.Add(JSONCourse);
             }
             return Json(AllCourse, JsonRequestBehavior.AllowGet);
 
